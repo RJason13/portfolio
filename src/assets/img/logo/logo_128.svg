@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 128 128">
+  <rect width="121.6" height="121.6" x="3.2" y="3.2" rx="16" ry="16" stroke-width="6.4" stroke="white" fill="black"/>
+  <circle r="16" cx="51.2" cy="28.8" fill="none" stroke="white" stroke-width="8"/>
+  <line x1="51.2" x2="54.4" y1="44.8" y2="73.6" stroke="white" stroke-width="8"/>
+  <path d="M 25.6 38.4 L 24.32 60.47999999999999 L 52.8 59.199999999999996 L 96 38.4" stroke="white" stroke-width="8" fill="none"/>
+  <path d="M 44.8 115.2 L 54.4 73.6 L 67.2 90.24 L 64 115.2" stroke="white" stroke-width="8" fill="none"/>
+</svg>
