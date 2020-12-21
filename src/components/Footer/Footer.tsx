@@ -8,8 +8,7 @@ import { ReactComponent as GithubLogo } from 'assets/img/third-party/github-logo
 
 
 const StyledFooter = styled.footer`
-    margin-top: 2rem;
-    min-height: ${({ theme }) => theme.spacing(4, '')};
+    min-height: ${({ theme }) => theme.spacing(4)}px;
 
     padding: ${({ theme }) => theme.spacing(1.5, 2)};
     background: ${({ theme }) => theme.palette.grey[900]};
@@ -18,8 +17,8 @@ const StyledFooter = styled.footer`
 
 const LogoMixin = css`
     vertical-align: text-bottom;
-    height: ${({theme})=>theme.spacing(2.5, '')};
-    width: ${({theme})=>theme.spacing(2.5, '')};
+    height: ${({theme})=>theme.spacing(2.5)}px;
+    width: ${({theme})=>theme.spacing(2.5)}px;
 
     transition: fill 0.2s, background 0.2s;
     fill:rgb(139, 148, 158);

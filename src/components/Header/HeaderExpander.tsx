@@ -53,6 +53,7 @@ const HeaderExpander: FC<HeaderExpanderProps> = ({ expand, toggleHeaderExpand })
         e.preventDefault();
         toggleHeaderExpand();
     }
+    
     const size = theme.spacing(3);
     const backSlashY = (expand ? 0.5 : line1Y) * size;
     const forwardSlashY = (expand ? 0.5 : line2Y) * size;

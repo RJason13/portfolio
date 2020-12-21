@@ -43,6 +43,7 @@ const StyledContent = styled.div`
 const StyledMain = styled.main`
     flex-grow: 1;
     flex-shrink: 1;
+    position: relative;
 `;
 
 const StyledFooter = styled(Footer)`

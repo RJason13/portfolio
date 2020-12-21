@@ -36,13 +36,13 @@ const connector = connect(mapStateToProps);
 type HeaderProps = ConnectedProps<typeof connector> & { className?: string; };
 
 const Header: FC<HeaderProps> = ({ className, expand }) => {
-    const isSmDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('sm'));
+    const isXsDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('xs'));
 
     return (
         <>
             {/* <Backdrop /> */}
-            <ExpandableAppbar className={className} position="fixed" color="default" $expand={isSmDown && expand}>
-                <Hidden mdUp>
+            <ExpandableAppbar className={className} position="fixed" color="default" $expand={isXsDown && expand}>
+                <Hidden smUp>
                     <MobileToolbar />
                 </Hidden>
                 <DesktopToolbar />
