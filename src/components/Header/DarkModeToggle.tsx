@@ -71,10 +71,10 @@ const DarkModeToggle: FC<Props> = ({ disableTooltip, darkModeKey, toggleDarkMode
             disableTouchListener={disableTooltip}
             enterDelay={500}
         >
-            <StyledNavLink to="" onClick={onClick}>
+            <StyledNavLink to="" onClick={onClick} exact>
                 <SvgIcon fontSize="small" visibility="hidden" />
                 {Object.entries(darkModeRecords).map(([key, record]) => {
-                    return <StyledSvgIcon $previous={previousDarkModeKey.current === key} $current={darkModeKey === key} aria-label={record.label} component={record.component} fontSize="small" />
+                    return <StyledSvgIcon key={key} $previous={previousDarkModeKey.current === key} $current={darkModeKey === key} aria-label={record.label} component={record.component} fontSize="small" />
                 })}
             </StyledNavLink>
         </Tooltip>

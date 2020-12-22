@@ -6,13 +6,17 @@ import { navbarHeight } from "utils/ui";
 const BaseToolbar = styled(Toolbar)<{ component: keyof HTMLElementTagNameMap }>`
     justify-content: space-between;
     & > li {
-        height: ${({ theme })=>navbarHeight(theme)};
+        
         list-style: none;
-        transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-        opacity: 0.8;
+        
+        &> * {
+            height: ${({ theme })=>navbarHeight(theme)};
+            transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            opacity: 0.8;
 
-        &:hover {
-            opacity: 10;
+            &:not(.active):hover {
+                opacity: 10;
+            }
         }
     }
 `;
@@ -24,6 +28,10 @@ export const StyledNavLink = styled(NavLink)`
     color: white;
     display: flex;
     align-items: center;
+
+    &.active {
+        opacity: 0.56;
+    }
 `;
 
 export default BaseToolbar;

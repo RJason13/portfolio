@@ -12,25 +12,31 @@ import DownloadResumeIcon from './DownloadResume';
 // sub components
 
 const MorphingToolbar = styled(BaseToolbar)`
-    ${({theme}) => theme.breakpoints.down('sm')} {
+    ${({theme}) => theme.breakpoints.down('xs')} {
         flex-direction: column;
+        align-items: stretch;
+        padding-left: ${({theme}) => theme.spacing(5)}px;
+        padding-right: ${({theme}) => theme.spacing(5)}px;
     }
 `;
 
 const MorphingNavLink = styled(StyledNavLink)`
+    ${({theme}) => theme.breakpoints.down('xs')} {
+        border-bottom: 1px solid white;
+    }
 `;
 
 // main component
 
 const DesktopToolbar: FC<{ className?: string}> = () => {
 
-    const isSmDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('sm'));
+    const isXsDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('xs'));
 
     return (
             <Container maxWidth="md" component="nav" disableGutters>
                 <MorphingToolbar variant="dense" component="ul">
-                    <li hidden={isSmDown}>
-                        <MorphingNavLink to="/">
+                    <li hidden={isXsDown}>
+                        <MorphingNavLink to="/" exact>
                             <SvgIcon component={Logo} fontSize="small" />
                         </MorphingNavLink>
                     </li>
@@ -48,10 +54,10 @@ const DesktopToolbar: FC<{ className?: string}> = () => {
                             <SearchIcon fontSize="small" onClick={expandSearchBar} />
                         </MorphingNavLink>
                     </li> */}
-                    <li hidden={isSmDown}>
+                    <li hidden={isXsDown}>
                         <DownloadResumeIcon />
                     </li>
-                    <li hidden={isSmDown}>
+                    <li hidden={isXsDown}>
                         <DarkModeToggle />
                     </li>
                 </MorphingToolbar>

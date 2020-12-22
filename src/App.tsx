@@ -23,7 +23,16 @@ const ThemedLayout: FC = ({ children }) => {
       const darkMode = darkModeState === null ? prefersDarkMode : darkModeState;
       return responsiveFontSizes(
           createMuiTheme({
-              palette: palette[darkMode ? 'dark' : 'light']
+              palette: palette[darkMode ? 'dark' : 'light'],
+              breakpoints: {
+                values: {
+                  xs: 0,
+                  sm: 688,
+                  md: 992,
+                  lg: 1312,
+                  xl: 1920
+                }
+              }
           })
       );
   }, [prefersDarkMode, darkModeState]);
@@ -46,7 +55,7 @@ function App() {
     <Provider store={store}>
         <ThemedLayout>
           <BrowserRouter>
-          <DefaultLayout>
+            <DefaultLayout>
               <RouteSwitch>
                 <Redirect from="/" to="/home" exact/>
                 {routes.map((route, index) => <Route key={index} path={route.uri} exact component={() => {
