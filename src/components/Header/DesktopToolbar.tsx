@@ -36,7 +36,7 @@ const DesktopToolbar: FC<{ className?: string}> = () => {
             <Container maxWidth="md" component="nav" disableGutters>
                 <MorphingToolbar variant="dense" component="ul">
                     <li hidden={isXsDown}>
-                        <MorphingNavLink to="/">
+                        <MorphingNavLink to="/" exact>
                             <SvgIcon component={Logo} fontSize="small" />
                         </MorphingNavLink>
                     </li>

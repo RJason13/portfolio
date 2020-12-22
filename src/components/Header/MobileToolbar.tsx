@@ -33,7 +33,7 @@ const MobileToolbar: FC<MobileNavBarProps> = () => {
                 </li>
                 
                 <li>
-                    <StyledNavLink to="/">
+                    <StyledNavLink to="/" exact>
                         <SvgIcon component={Logo} fontSize="small" />
                     </StyledNavLink>
                 </li>
