@@ -53,11 +53,12 @@ const HeaderExpander: FC<HeaderExpanderProps> = ({ expand, toggleHeaderExpand })
         e.preventDefault();
         toggleHeaderExpand();
     }
+    
     const size = theme.spacing(3);
     const backSlashY = (expand ? 0.5 : line1Y) * size;
     const forwardSlashY = (expand ? 0.5 : line2Y) * size;
     return (
-        <StyledNavLink to="" onClick={onClick}>
+        <StyledNavLink to="" onClick={onClick} exact>
             <SvgIcon fontSize="small">
                 <TranslateGroup $active={expand} transform={`translate(0, ${backSlashY})`}>
                     <RotateGroup $active={expand} transform={`rotate(${expand ? 45 : 0})`}>

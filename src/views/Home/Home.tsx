@@ -1,16 +1,25 @@
 import React, { FC } from "react";
-import { ReactComponent as Logo } from 'assets/img/logo/logo_512.svg';
-import { Container, Typography } from "@material-ui/core";
+import { Box, Container, Typography } from "@material-ui/core";
 
 const Home: FC = () => {
     return (
         <Container maxWidth="md">
-          <p>
-            <Typography variant="h3">
-              Software Development Engineer<br/>
-              Web, Desktop, and Mobile Application Developer
-            </Typography>
-          </p>
+          <Box component={"section"} py={5}>
+            <Box py={5} textAlign="center">
+              <Typography variant="h2">
+                Richard Jason
+              </Typography>
+              <Typography variant="h3">
+                Software Development Engineer
+              </Typography>
+              <Typography variant="h4">
+                Web - Desktop - Mobile
+              </Typography>
+              <Typography variant="h4">
+                Application Development
+              </Typography>
+            </Box>
+          </Box>
         </Container>);
 }
 export default Home;
