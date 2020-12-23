@@ -41,13 +41,13 @@ const DesktopToolbar: FC<{ className?: string}> = () => {
                         </MorphingNavLink>
                     </li>
                     <li>
-                        <MorphingNavLink to="projects" >Projects</MorphingNavLink>
+                        <MorphingNavLink to="/projects" >Projects</MorphingNavLink>
                     </li>
                     <li>
-                        <MorphingNavLink to="about" >About</MorphingNavLink>
+                        <MorphingNavLink to="/about" >About</MorphingNavLink>
                     </li>
                     <li>
-                        <MorphingNavLink to="contact" >Contact</MorphingNavLink>
+                        <MorphingNavLink to="/contact" >Contact</MorphingNavLink>
                     </li>
                     {/* <li hidden={isSmDown}>
                         <MorphingNavLink to="" onClick={(e)=>e.preventDefault()}>

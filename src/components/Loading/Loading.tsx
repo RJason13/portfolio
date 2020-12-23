@@ -1,5 +1,5 @@
-import { Box, Grid } from "@material-ui/core";
-import React, { FC, useMemo } from "react";
+import { Box, Grid, Zoom } from "@material-ui/core";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import styled, { keyframes, useTheme } from "styled-components";
 import { range } from 'lodash';
 
@@ -41,7 +41,7 @@ const BlurBox = styled(Box)`
     animation-timing-function: ease;
     animation-iteration-count: infinite;
     /* animation-direction: reverse; */
-    animation-duration: 1s;
+    animation-duration: 0.75s;
 `;
 
 const translationAnimation = () => {
@@ -69,11 +69,11 @@ const RectCointainer = styled.div`
     animation-name: ${translation};
     animation-timing-function: ease;
     animation-iteration-count: infinite;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     transform: translate(-50%, -50%);
 
     &:nth-of-type(2) {
-        animation-delay: 1s;
+        animation-delay: 0.75s;
     }
 `;
 
@@ -100,18 +100,19 @@ const RotatingRect = styled.div<{ $rectSize: number }>`
     animation-name: ${rectRotation};
     animation-timing-function: ease;
     animation-iteration-count: infinite;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
 
     ${RectCointainer}:nth-of-type(2) & {
-        animation-delay: 1s;
+        animation-delay: 0.75s;
     }
 `;
 
 const Loading: FC = () => {
     const theme = useTheme();
+    const [show, setShow] = useState(false);
 
     const dimension = useMemo(() => {
-        const rectSize = theme.spacing(10);
+        const rectSize = theme.spacing(5);
         const w = 1.5 * rectSize;
         const h = 1.5 * rectSize;
 
@@ -132,17 +133,23 @@ const Loading: FC = () => {
 
     const { size: rectSize } = dimension.rect;
 
+    useEffect(() => {
+        setTimeout(() => setShow(true), 1000);
+    }, [])
+
     return (
         <StyledGrid container justify="center" alignItems="center">
-            <LoadingContainer $height={dimension.h} $width={dimension.w} >
-                <BlurBox />
-                <RectCointainer>
-                    <RotatingRect $rectSize={rectSize} />
-                </RectCointainer>
-                <RectCointainer>
-                    <RotatingRect $rectSize={rectSize} />
-                </RectCointainer>
-            </LoadingContainer>
+            <Zoom in={show}>
+                <LoadingContainer $height={dimension.h} $width={dimension.w} >
+                    <BlurBox />
+                    <RectCointainer>
+                        <RotatingRect $rectSize={rectSize} />
+                    </RectCointainer>
+                    <RectCointainer>
+                        <RotatingRect $rectSize={rectSize} />
+                    </RectCointainer>
+                </LoadingContainer>
+            </Zoom>
         </StyledGrid>
     );
 }
