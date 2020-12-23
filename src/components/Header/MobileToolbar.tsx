@@ -8,8 +8,9 @@ import styled from 'styled-components';
 import BaseToolbar, { StyledNavLink } from './BaseToolbar';
 import HeaderExpander from './HeaderExpander';
 import DarkModeToggle from './DarkModeToggle';
-import { useSelector } from 'react-redux';
-import { headerExpandSelector } from 'state/header';
+import { connect, ConnectedProps } from 'react-redux';
+import { headerExpandSelector, toggleHeaderExpand } from 'state/header';
+import { RootState } from 'state/store';
 
 // sub components
 const SmallerGutterToolbar = styled(BaseToolbar)`
@@ -18,12 +19,19 @@ const SmallerGutterToolbar = styled(BaseToolbar)`
 `;
 
 // main component
+const mapStateToProps = (state: RootState) => ({
+    headerExpand: headerExpandSelector(state)
+});
 
-type MobileNavBarProps = { className?: string; };
+const mapDispatchToProps = {
+    toggleHeaderExpand
+}
 
-const MobileToolbar: FC<MobileNavBarProps> = () => {
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
-    const headerExpand = useSelector(headerExpandSelector);
+type MobileNavBarProps = ConnectedProps<typeof connector> & { className?: string; };
+
+const MobileToolbar: FC<MobileNavBarProps> = ({ headerExpand, toggleHeaderExpand }) => {
 
     return (
         <Container maxWidth="md" component="nav" disableGutters>
@@ -33,7 +41,7 @@ const MobileToolbar: FC<MobileNavBarProps> = () => {
                 </li>
                 
                 <li>
-                    <StyledNavLink to="/" exact>
+                    <StyledNavLink to="/" exact onClick={() => toggleHeaderExpand(false)}>
                         <SvgIcon component={Logo} fontSize="small" />
                     </StyledNavLink>
                 </li>
@@ -47,4 +55,4 @@ const MobileToolbar: FC<MobileNavBarProps> = () => {
     );
 };
 
-export default MobileToolbar;
+export default connector(MobileToolbar);

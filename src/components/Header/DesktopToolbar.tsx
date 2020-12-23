@@ -8,8 +8,22 @@ import styled, { DefaultTheme } from 'styled-components';
 import BaseToolbar, { StyledNavLink } from './BaseToolbar';
 import DarkModeToggle from './DarkModeToggle';
 import DownloadResumeIcon from './DownloadResume';
+import { connect, ConnectedProps } from 'react-redux';
+import { toggleHeaderExpand } from 'state/header';
 
 // sub components
+
+const StyledContainer = styled(Container)<{ component: keyof HTMLElementTagNameMap }>`
+    ${({theme}) => theme.breakpoints.down('xs')} {
+        &:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: #424245;
+        }
+    }
+`;
 
 const MorphingToolbar = styled(BaseToolbar)`
     ${({theme}) => theme.breakpoints.down('xs')} {
@@ -20,49 +34,66 @@ const MorphingToolbar = styled(BaseToolbar)`
     }
 `;
 
-const MorphingNavLink = styled(StyledNavLink)`
+const StyledLi = styled.li`
     ${({theme}) => theme.breakpoints.down('xs')} {
-        border-bottom: 1px solid white;
+        &:nth-child(n + 3):before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: #424245;
+        }
     }
+`;
+
+const MorphingNavLink = styled(StyledNavLink)`
 `;
 
 // main component
 
-const DesktopToolbar: FC<{ className?: string}> = () => {
+const mapDispatchToProps = {
+    toggleHeaderExpand
+}
+
+const connector = connect(null, mapDispatchToProps);
+
+type DesktopToolbarProps = ConnectedProps<typeof connector> & { className?: string; };
+
+const DesktopToolbar: FC<DesktopToolbarProps> = ({ toggleHeaderExpand }) => {
 
     const isXsDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('xs'));
 
     return (
-            <Container maxWidth="md" component="nav" disableGutters>
-                <MorphingToolbar variant="dense" component="ul">
-                    <li hidden={isXsDown}>
+            <StyledContainer maxWidth="md" component="nav" disableGutters>
+                <MorphingToolbar variant="dense" component="ul" onClick={()=>toggleHeaderExpand(false)}>
+                    <StyledLi hidden={isXsDown}>
                         <MorphingNavLink to="/" exact>
                             <SvgIcon component={Logo} fontSize="small" />
                         </MorphingNavLink>
-                    </li>
-                    <li>
+                    </StyledLi>
+                    <StyledLi>
                         <MorphingNavLink to="/projects" >Projects</MorphingNavLink>
-                    </li>
-                    <li>
+                    </StyledLi>
+                    <StyledLi>
                         <MorphingNavLink to="/about" >About</MorphingNavLink>
-                    </li>
-                    <li>
+                    </StyledLi>
+                    <StyledLi>
                         <MorphingNavLink to="/contact" >Contact</MorphingNavLink>
-                    </li>
-                    {/* <li hidden={isSmDown}>
+                    </StyledLi>
+                    {/* <StyledLi hidden={isSmDown}>
                         <MorphingNavLink to="" onClick={(e)=>e.preventDefault()}>
                             <SearchIcon fontSize="small" onClick={expandSearchBar} />
                         </MorphingNavLink>
-                    </li> */}
-                    <li hidden={isXsDown}>
+                    </StyledLi> */}
+                    <StyledLi>
                         <DownloadResumeIcon />
-                    </li>
-                    <li hidden={isXsDown}>
+                    </StyledLi>
+                    <StyledLi hidden={isXsDown}>
                         <DarkModeToggle />
-                    </li>
+                    </StyledLi>
                 </MorphingToolbar>
-            </Container>
+            </StyledContainer>
     );
 };
 
-export default DesktopToolbar;
+export default connector(DesktopToolbar);

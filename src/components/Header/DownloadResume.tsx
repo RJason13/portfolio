@@ -1,8 +1,9 @@
-import { Button, Dialog, DialogActions, DialogTitle, Tooltip, Zoom } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogTitle, Tooltip, useMediaQuery, Zoom } from '@material-ui/core';
 import React, { FC, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Description as DescriptionIcon } from '@material-ui/icons';
 import { StyledNavLink } from './BaseToolbar';
+import { DefaultTheme } from 'styled-components';
 
 type Props = {
     disableTooltip?: boolean;
@@ -12,6 +13,7 @@ const DownloadResumeIcon: FC<Props> = ({ disableTooltip }) => {
 
     const [dialogOpen, setDialogOpen] = useState(false);
     const label = 'Download Resume';
+    const isXsDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('xs'));
 
     const promptDownloadResume = () => {
         setDialogOpen(true);
@@ -38,7 +40,7 @@ const DownloadResumeIcon: FC<Props> = ({ disableTooltip }) => {
                 enterDelay={500}
             >
             <StyledNavLink to="" onClick={onClick} exact>
-                <DescriptionIcon aria-label={label} fontSize="small" />
+                {isXsDown ? "Download Resume" : <DescriptionIcon aria-label={label} fontSize="small" />}
             </StyledNavLink>
             </Tooltip>
             <Dialog open={dialogOpen} onClose={handleClose}>
