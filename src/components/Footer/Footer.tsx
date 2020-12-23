@@ -1,6 +1,6 @@
-import { Container, Grid, Link } from "@material-ui/core";
+import { Container, Grid, Link, Typography, useMediaQuery } from "@material-ui/core";
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { css, DefaultTheme } from "styled-components";
 import { ReactComponent as CreateReactAppLogo } from 'assets/img/third-party/create-react-app-logo.svg';
 import { ReactComponent as LinkedInLogo } from 'assets/img/third-party/linkedIn-logo.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/third-party/twitter-logo.svg';
@@ -17,14 +17,15 @@ const StyledFooter = styled.footer`
 
 const LogoMixin = css`
     vertical-align: text-bottom;
-    height: ${({theme})=>theme.spacing(2.5)}px;
-    width: ${({theme})=>theme.spacing(2.5)}px;
+    height: 1rem;
+    width: 1rem;
 
     transition: fill 0.2s, background 0.2s;
     fill:rgb(139, 148, 158);
 `;
 
 const StyledLink = styled(Link)`
+    -webkit-tap-highlight-color: transparent;
     color:rgb(139, 148, 158);
     &:hover {
         text-decoration: none;
@@ -77,24 +78,29 @@ const StyledTwitterLogo = styled(TwitterLogo)`
 // main component
 
 const Footer = () => {
+    const isXsDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('xs'));
 
     return (
         <StyledFooter>
             <Container maxWidth="md">
-                <Grid container justify="space-between" alignItems="center">
+                <Grid container justify="space-between" alignItems="center" direction={isXsDown ? "column-reverse" : "row"} spacing={isXsDown ? 2 : 0}>
                     <Grid item>
-                        Copyright &copy; 2020&nbsp;
-                        <StyledLink href="mailto: s.richard.jason@gmail.com">
-                            <UnderlineOnHoverSpan>Richard Jason</UnderlineOnHoverSpan>
-                        </StyledLink>
-                        .
-                        Built with&nbsp;
-                        <StyledLink href="https://create-react-app.dev" target="_blank">
-                            <StyledCreateReactAppLogo />&nbsp;
-                            <UnderlineOnHoverSpan>Create React App</UnderlineOnHoverSpan>
-                        </StyledLink>.
+                        <Typography variant="caption" align="center" display={isXsDown ? "block" : "inline"}>
+                            Copyright &copy; 2020&nbsp;
+                            <StyledLink href="mailto: s.richard.jason@gmail.com">
+                                <UnderlineOnHoverSpan>Richard Jason</UnderlineOnHoverSpan>
+                            </StyledLink>.
+                        </Typography>
+                        {!isXsDown && <>&nbsp;</>}
+                        <Typography variant="caption" align="center" display={isXsDown ? "block" : "inline"}>
+                            Built with&nbsp;
+                            <StyledLink href="https://create-react-app.dev" target="_blank">
+                                <StyledCreateReactAppLogo />&nbsp;
+                                <UnderlineOnHoverSpan>Create React App</UnderlineOnHoverSpan>
+                            </StyledLink>.
+                        </Typography>
                     </Grid>
-                    <Grid item>
+                    <Grid item className="MuiTypography-caption">
                         <StyledLink href="https://www.linkedin.com/in/s-richard-jason" target="_blank"><StyledLinkedInLogo /></StyledLink>&nbsp;&nbsp;
                         <StyledLink href="https://github.com/RJason13" target="_blank"><StyledGithubLogo /></StyledLink>&nbsp;&nbsp;
                         <StyledLink href="https://twitter.com/s_richard_jason" target="_blank"><StyledTwitterLogo /></StyledLink>

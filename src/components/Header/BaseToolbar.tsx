@@ -22,6 +22,7 @@ const BaseToolbar = styled(Toolbar)<{ component: keyof HTMLElementTagNameMap }>`
 `;
 
 export const StyledNavLink = styled(NavLink)`
+    -webkit-tap-highlight-color: transparent;
     height: ${({ theme })=>navbarHeight(theme)};
     line-height: ${({ theme })=>navbarHeight(theme)};
     text-decoration: none;

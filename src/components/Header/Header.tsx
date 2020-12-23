@@ -13,9 +13,10 @@ import { RootState } from 'state/store';
 import { headerExpandSelector } from 'state/header';
 
 // sub components
+
 const ExpandableAppbar = styled(AppBar)<{ $expand: boolean }>`
     height: ${({theme, $expand})=> $expand ? "100%" : navbarHeight(theme)};
-    background-color: ${({ $expand })=> $expand ? '#000' : 'rgba(0,0,0,0.8)' };
+    background-color: ${({ theme, $expand })=> $expand ? '#000' : (theme.palette.type === 'light' ? 'rgba(0,0,0,0.8)' : 'rgba(29,29,31,0.72)')};
     overflow-y: hidden;
     backdrop-filter: saturate(180%) blur(20px);
     transition: ${({ $expand })=> $expand ? 
@@ -38,17 +39,19 @@ type HeaderProps = ConnectedProps<typeof connector> & { className?: string; };
 const Header: FC<HeaderProps> = ({ className, expand }) => {
     const isXsDown = useMediaQuery((theme: DefaultTheme) => theme.breakpoints.down('xs'));
 
+    // workaround to scrolling bug when download resume in mobile device
+    const cancelScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+        e.currentTarget.scrollTop = 0;
+    }
+
     return (
-        <>
-            {/* <Backdrop /> */}
-            <ExpandableAppbar className={className} position="fixed" color="default" $expand={isXsDown && expand}>
-                <Hidden smUp>
-                    <MobileToolbar />
-                </Hidden>
-                <DesktopToolbar />
-                {/* <SearchContainer /> */}
-            </ExpandableAppbar>
-        </>
+        <ExpandableAppbar onScroll={cancelScroll} className={className} position="fixed" color="default" $expand={isXsDown && expand}>
+            <Hidden smUp>
+                <MobileToolbar />
+            </Hidden>
+            <DesktopToolbar />
+            {/* <SearchContainer /> */}
+        </ExpandableAppbar>
     );
 };
 
