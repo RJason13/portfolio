@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Link, Typography, useMediaQuery } from "@material-ui/core";
+import { Container, Grid, Link, Typography, useMediaQuery } from "@material-ui/core";
 import React from "react";
 import styled, { css, DefaultTheme } from "styled-components";
 import { ReactComponent as CreateReactAppLogo } from 'assets/img/third-party/create-react-app-logo.svg';
