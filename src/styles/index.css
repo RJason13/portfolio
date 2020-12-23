@@ -21,11 +21,20 @@ body {
   font-feature-settings: "kern", "liga", "clig", "calt";
   font-size: small;
 }
-body {
-  transition: color 0.5s;
+body .MuiTypography-root, body .MuiSvgIcon-root, body .MuiButtonBase-root  {
+  transition:
+    background-color.5s .2s cubic-bezier(0.52, 0.16, 0.24, 1),
+    color .5s .2s cubic-bezier(0.52, 0.16, 0.24, 1), 
+    filter .5s .2s cubic-bezier(0.52, 0.16, 0.24, 1), 
+    text-shadow .5s .2s cubic-bezier(0.52, 0.16, 0.24, 1),
+    border-color .5s .2s cubic-bezier(0.52, 0.16, 0.24, 1);
 }
+body .MuiButtonBase-root .MuiSvgIcon-root {
+  transition: none;
+}
+
 body, footer {
-  transition: background 0.5s;
+  transition: background-color .44s .2s cubic-bezier(0.52, 0.16, 0.24, 1);
 }
 article,
 aside,

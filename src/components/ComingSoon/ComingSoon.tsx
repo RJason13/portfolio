@@ -10,6 +10,7 @@ const StyledGrid = styled(Grid)`
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 2px 2px 4px ${({ theme })=>theme.palette.type === 'light' ? '#000' : '#fff'};
+    text-align: center;
 `;
 
 const shadow = css`

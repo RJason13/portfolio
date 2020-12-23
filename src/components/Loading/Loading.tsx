@@ -134,7 +134,13 @@ const Loading: FC = () => {
     const { size: rectSize } = dimension.rect;
 
     useEffect(() => {
-        setTimeout(() => setShow(true), 1000);
+        const timeout = setTimeout(() => {
+            setShow(true)
+        }, 1000);
+
+        return () => {
+            clearTimeout(timeout);
+        }
     }, [])
 
     return (
