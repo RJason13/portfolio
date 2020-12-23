@@ -21,7 +21,7 @@ body {
   font-feature-settings: "kern", "liga", "clig", "calt";
   font-size: small;
 }
-body .MuiTypography-root, body .MuiSvgIcon-root, body .MuiButtonBase-root  {
+main .MuiTypography-root, main .MuiSvgIcon-root, main .MuiButtonBase-root  {
   transition:
     background-color.5s .2s cubic-bezier(0.52, 0.16, 0.24, 1),
     color .5s .2s cubic-bezier(0.52, 0.16, 0.24, 1), 
@@ -29,7 +29,7 @@ body .MuiTypography-root, body .MuiSvgIcon-root, body .MuiButtonBase-root  {
     text-shadow .5s .2s cubic-bezier(0.52, 0.16, 0.24, 1),
     border-color .5s .2s cubic-bezier(0.52, 0.16, 0.24, 1);
 }
-body .MuiButtonBase-root .MuiSvgIcon-root {
+main .MuiButtonBase-root .MuiSvgIcon-root {
   transition: none;
 }
 
