@@ -9,6 +9,8 @@ type Props = {
     disableTooltip?: boolean;
 };
 
+const resumeUri = "https://firebasestorage.googleapis.com/v0/b/richard-jason-portfolio.appspot.com/o/public%2FResume%20Richard%20Jason%202020-12-20.pdf?alt=media";
+
 const DownloadResumeIcon: FC<Props> = ({ disableTooltip }) => {
 
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -49,7 +51,7 @@ const DownloadResumeIcon: FC<Props> = ({ disableTooltip }) => {
                     <Button onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button onClick={handleClose} component="a" href={process.env.PUBLIC_URL + '/files/resume-richard-jason_2020-12-20.pdf'} download>
+                    <Button variant="outlined" onClick={handleClose} component="a" href={resumeUri} target="__blank">
                         Download
                     </Button>
                 </DialogActions>
